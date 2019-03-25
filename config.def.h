@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "kiwi:pixelsize=10, mango:scalable=false";
+static char *font = "kiwi:pixelsize=10";
 static int borderpx = 20;
 
 /* disable bold, italic and roman */
