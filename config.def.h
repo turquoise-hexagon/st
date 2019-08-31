@@ -30,7 +30,7 @@ char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 static float cwscale = 1.0;
-static float chscale = 1.3;
+static float chscale = 1.4;
 
 /*
  * word delimiter string
@@ -139,8 +139,8 @@ static unsigned int cursorshape = 4;
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 80;
-static unsigned int rows = 20;
+static unsigned int cols = 75;
+static unsigned int rows = 15;
 
 /*
  * Default colour and shape of the mouse cursor
