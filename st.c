@@ -828,6 +828,8 @@ ttywrite(const char *s, size_t n, int may_echo)
 	const char *next;
 	Arg arg = (Arg) { .i = term.scr };
 
+	kscrolldown(&arg);
+
 	if (may_echo && IS_SET(MODE_ECHO))
 		twrite(s, n, 1);
 
