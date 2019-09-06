@@ -1042,7 +1042,7 @@ tswapscreen(void)
 void
 kscrolldown(const Arg* a)
 {
-	int n = term.row + n;
+	int n = a->i;
 
 	if (n < 0)
 		n = term.row + n;
