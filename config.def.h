@@ -12,7 +12,6 @@ static int borderpx = 20;
 int disablebold = 1;
 int disableitalic = 1;
 int disableroman = 1;
-
 /*
  * What program is execed by st depends of these precedence rules:
  * 1: program passed with -e
@@ -21,7 +20,7 @@ int disableroman = 1;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/bash";
+static char *shell = "/bin/sh";
 char *utmp = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
@@ -98,7 +97,7 @@ static const char *colorname[] = {
 	"#F4ADB1",
 	"#7CBBC0",
 	"#D9DBE3",
-	
+
 	/* 8 bright colors */
 	"#0E374B",
 	"#D87E8F",
@@ -108,9 +107,9 @@ static const char *colorname[] = {
 	"#F8CBCE",
 	"#A5D3D9",
 	"#EDEEF0",
-	
+
 	[255] = 0,
-	
+
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#102029",
 	"#EDEEF0"
@@ -139,7 +138,7 @@ static unsigned int cursorshape = 4;
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 75;
+static unsigned int cols = 70;
 static unsigned int rows = 15;
 
 /*
@@ -156,19 +155,21 @@ static unsigned int mousebg = 256;
 static unsigned int defaultattr = 11;
 
 /*
+ * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
+ * Note that if you want to use ShiftMask with selmasks, set this to an other
+ * modifier, set to 0 to not use it.
+ */
+static uint forcemousemod = ShiftMask;
+
+/*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
-	/* button               mask            string */
-	{ Button4,              XK_NO_MOD,      "\031" },
-	{ Button5,              XK_NO_MOD,      "\005" },
-};
-
-MouseKey mkeys[] = {
-    /* button               mask            function        argument */
-	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  3} },
-	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  3} },
+	/* mask                 button   function        argument       release */
+	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -189,8 +190,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
@@ -225,13 +224,6 @@ static KeySym mappedkeys[] = { -1 };
  * numlock (Mod2Mask) and keyboard layout (XK_SWITCH_MOD) are ignored.
  */
 static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
-
-/*
- * Override mouse-select while mask is active (when MODE_MOUSE is set).
- * Note that if you want to use ShiftMask with selmasks, set this to an other
- * modifier, set to 0 to not use it.
- */
-static uint forceselmod = ShiftMask;
 
 /*
  * This is the huge key array which defines all compatibility to the Linux
