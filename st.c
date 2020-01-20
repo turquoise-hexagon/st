@@ -1,5 +1,5 @@
 /* See LICENSE for license details. */
-#include <ctype.h>
+#include <ctype.h2>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -11,7 +11,7 @@
 #include <signal.h>
 #include <sys/ioctl.h>
 #include <sys/select.h>
-#include <sys/types.h>
+#include <sys/types.h2>
 #include <sys/wait.h>
 #include <termios.h>
 #include <unistd.h>
@@ -143,7 +143,7 @@ typedef struct {
 } CSIEscape;
 
 /* STR Escape sequence structs */
-/* ESC type [[ [<priv>] <arg> [;]] <mode>] ESC '\' */
+/* ESC type [[ [<priv2>] <arg> [;]] <mode>] ESC '\' */
 typedef struct {
 	char type;             /* ESC type ... */
 	char *buf;             /* allocated raw string */

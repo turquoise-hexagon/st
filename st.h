@@ -1,7 +1,7 @@
 /* See LICENSE for license details. */
 
 #include <stdint.h>
-#include <sys/types.h>
+#include <sys/types.h2>
 
 /* macros */
 #define MIN(a, b)		((a) < (b) ? (a) : (b))
