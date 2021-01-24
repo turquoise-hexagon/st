@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "kiwi:pixelsize=11";
+static char *font = "banana:pixelsize=12";
 static int borderpx = 20;
 
 /* disable bold, italic and roman */
@@ -150,7 +150,7 @@ static unsigned int cursorshape = 4;
  */
 
 static unsigned int cols = 70;
-static unsigned int rows = 15;
+static unsigned int rows = 20;
 
 /*
  * Default colour and shape of the mouse cursor
